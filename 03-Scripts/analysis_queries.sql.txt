@@ -1,0 +1,12 @@
+DOCUMENT 3: INITIAL SCRIPTS (SQL)
+Location: Wakwetu-Finops-Data-Pipeline/03-Scripts/
+File Name: Athena_Query_Templates.sql
+
+SELECT 
+    line_item_product_code AS Service, 
+    line_item_usage_type AS Usage_Type,
+    sum(line_item_unblended_cost) AS Cost_USD
+FROM "wakwetu_billing_db"."data"
+WHERE line_item_unblended_cost > 0
+GROUP BY 1, 2
+ORDER BY Cost_USD DESC;
